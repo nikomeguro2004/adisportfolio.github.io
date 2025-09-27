@@ -3,187 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>S Adityan - Portfolio</title>
     <style>
-        * {
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, #0d1b2a, #1b263b);
-            color: #e0e1dd;
+            background: linear-gradient(135deg, #0F0F0F, #1A1A1A);
+            color: #D3D3D3;
+            line-height: 1.5;
             overflow-x: hidden;
         }
         header {
-            background: rgba(0, 0, 0, 0.8);
             text-align: center;
-            padding: 4rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            background: #0F0F0F;
         }
-        header h1 {
-            font-size: 2.5rem;
-            color: #00ff88;
-            text-shadow: 0 0 10px #00ff88;
+        header img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            border: 3px solid #00A3E0;
+            transition: transform 0.3s ease;
         }
-        header p {
-            font-size: 1.2rem;
-            color: #778da9;
+        header img:hover {
+            transform: scale(1.05);
         }
         nav {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem;
+            background: #1A1A1A;
+            padding: 10px;
             text-align: center;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 999;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            transition: background 0.2s ease;
+        }
+        nav.scrolled {
+            background: rgba(26, 26, 26, 0.95);
         }
         nav a {
-            color: #00ff88;
+            color: #A0A0A0;
+            margin: 0 25px;
             text-decoration: none;
-            margin: 0 1.5rem;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: color 0.2s ease;
         }
         nav a:hover {
-            color: #ff00ff;
-            text-shadow: 0 0 5px #ff00ff;
+            color: #00A3E0;
         }
-        .container {
-            max-width: 1000px;
-            margin: 6rem auto 2rem;
-            padding: 0 1rem;
-        }
-        .section {
-            padding: 3rem 0;
+        section {
+            padding: 80px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
-        .section.visible {
+        section.active {
             opacity: 1;
             transform: translateY(0);
         }
-        .project {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 10px;
-            border: 1px solid #00ff88;
+        .card {
+            background: #222222;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #00A3E0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .project:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 163, 224, 0.2);
         }
-        .project h3 {
-            color: #ff00ff;
+        .skills ul, .certifications ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
         }
-        .project p {
-            color: #e0e1dd;
-        }
-        .project a {
-            color: #00ff88;
-            text-decoration: none;
-        }
-        .project a:hover {
-            color: #ff00ff;
+        .skills li, .certifications li {
+            margin: 5px 0;
         }
         footer {
             text-align: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.8);
-            color: #778da9;
-        }
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            nav a {
-                margin: 0 0.5rem;
-                font-size: 1rem;
-            }
-            .container {
-                margin: 5rem auto 1rem;
-            }
+            padding: 15px;
+            background: #0F0F0F;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Your Name</h1>
-        <p>Web Developer | Designer | Innovator</p>
-    </header>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <div class="container">
-        <div id="about" class="section">
-            <h2>About Me</h2>
-            <p>Hi, I'm Your Name, a forward-thinking developer passionate about creating cutting-edge, user-focused solutions. My expertise spans web development, UI/UX design, and modern JavaScript frameworks.</p>
-        </div>
-        <div id="projects" class="section">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Project 1</h3>
-                <p>A futuristic web app built with modern JavaScript, showcasing seamless animations and responsive design.</p>
-                <a href="#">View Project</a>
-            </div>
-            <div class="project">
-                <h3>Project 2</h3>
-                <p>An innovative platform leveraging APIs and dynamic content for an immersive user experience.</p>
-                <a href="#">View Project</a>
-            </div>
-        </div>
-        <div id="contact" class="section">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-            <p>LinkedIn: <a href="#">Your LinkedIn Profile</a></p>
-            <p>GitHub: <a href="#">Your GitHub Profile</a></p>
-        </div>
+<header>
+    <img src="profile.jpg" alt="S Adityan">
+    <h1>S Adityan</h1>
+    <p>as5392@srmist.edu.in | 9360707432 | Chennai, Tamil Nadu, India, 600002</p>
+    <p>Final Year B.Tech in Computer Science and Engineering - Cyber Security, SRM IST-Ramapuram | 2026</p>
+</header>
+<nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+</nav>
+<section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+        <p>As a dynamic full-stack developer with a robust foundation in Python, Flutter, Supabase, and React.js, I specialize in architecting sophisticated, high-performance applications that seamlessly integrate cutting-edge UI/UX with resilient backend systems. Currently in my final year at SRM IST-Ramapuram pursuing a B.Tech in Computer Science and Engineering with a focus on Cyber Security, I have cultivated advanced technical proficiency through hands-on projects, including a desktop analytics platform, a real-time restaurant management system, and a security-focused Chrome extension. My expertise spans secure coding practices, real-time data synchronization, and user-centric design, driving innovative solutions that enhance digital ecosystems. Committed to continuous professional growth, I leverage emerging technologies to deliver scalable, impactful software, positioning myself as a valuable asset in the tech industry.</p>
     </div>
-    <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
-    </footer>
+</section>
+<section id="experience">
+    <h2>Experience</h2>
+    <div class="card">
+        <h3>Ambalsoft - Artificial Intelligence Intern</h3>
+        <p>Sep 2025 - Present | Developer, Full-time | Chennai, Tamil Nadu, India</p>
+        <p>Serving as an Artificial Intelligence Intern at Ambalsoft, I spearhead the development and deployment of fine-tuned AI models integrated with robust backends, enhancing existing products with innovative functionalities. Collaborating with cross-functional teams, I optimize model performance using advanced techniques like Retrieval-Augmented Generation (RAG) and Large Language Models (LLM), ensuring seamless integration and rigorous compliance with industry standards. My responsibilities include leveraging tools such as Faiss, OpenAI API, and Express.js to architect scalable support chatbot systems, delivering exceptional user experiences with real-time adaptability and secure data management, thereby driving product innovation and operational efficiency.</p>
+    </div>
+    <div class="card">
+        <h3>Freelance Software Engineer</h3>
+        <p>Jun 2025 - Present | Freelance</p>
+        <p>As a Freelance Software Engineer, I design and implement complex, client-tailored software solutions utilizing Flutter, PyQt, and React.js, emphasizing optimized performance and intuitive UI/UX. I manage end-to-end project lifecycles, from conceptual design to deployment, integrating advanced frameworks like Supabase and Figma to deliver responsive, cross-platform applications. My work showcases proficiency in team leadership and management, ensuring timely delivery of high-quality, scalable solutions that meet diverse business needs across industries.</p>
+    </div>
+</section>
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="card">
+        <h3>Water Plant Management System <a href="Github Link" target="_blank">GitHub</a></h3>
+        <p>Jun 2025 - Aug 2025 | Freelance | Python, SQLite, PyQt5, Pandas, Chart.js, Git, ReportLab</p>
+        <p>Engineered a sophisticated desktop application leveraging Python and PyQt5 to construct a highly responsive GUI, exemplifying advanced event-driven programming and ergonomic design principles. Implemented SQLite for streamlined database management, optimizing query performance, while harnessing Pandas and NumPy for intricate data analysis and visualization. Integrated Chart.js for dynamic, interactive data representations and ReportLab for automated, precision-engineered PDF invoice generation, enhancing operational automation. Elevated the interface with QtAwesome icons and CSS-inspired styling, delivering a professional, user-centric experience that sets a benchmark in industrial software solutions.</p>
+    </div>
+    <div class="card">
+        <h3>Cuisync <a href="Github Link" target="_blank">GitHub</a></h3>
+        <p>Aug 2025 - Present | Freelance | Flutter, Dart, Supabase, Figma, Android Studio</p>
+        <p>Led a 4-member team to develop Cuisync, a cutting-edge cross-platform restaurant management platform, utilizing Flutter with Bloc architecture for seamless 60fps UI performance. Designed and deployed Waiter and Chef Android applications alongside an Admin Web Dashboard, incorporating role-based Supabase authentication, real-time synchronization, and fortified data security protocols. Engineered QR-coded PDF invoices and interactive fl_chart analytics, optimizing system efficiency for live restaurant operations, showcasing advanced mobile development and collaborative project execution skills.</p>
+    </div>
+    <div class="card">
+        <h3>Site Analyzer using AI <a href="Github Link" target="_blank">GitHub</a></h3>
+        <p>Feb 2025 - Apr 2025 | SRM IST-Ramapuram | JavaScript, Python, React.js, CSS, PHP</p>
+        <p>Developed an innovative Chrome Extension for real-time website security analysis, empowering users to mitigate risks from malicious sites through a multi-layered evaluation framework. Utilized JavaScript and React.js to assess URLs against phishing detection, SSL validation, typosquatting, and shortened URL expansion, cross-referencing with threat intelligence databases. Enhanced functionality with WHOIS lookup, blacklist filtering, and a user reporting system, delivering dynamic risk assessments via a sleek, animated UI, built with Chrome Extension APIs and security databases, reinforcing my expertise in cybersecurity and web development.</p>
+    </div>
+    <div class="card">
+        <h3>Support Chatbot for Specific Softwares <a href="Github Link" target="_blank">GitHub</a></h3>
+        <p>Sep 2025 - Present | Ambalsoft | AI, Express.js, Faiss, JavaScript, LLM, Node.js, OpenAI API, React.js, SQLite</p>
+        <p>Architected a state-of-the-art AI-driven support chatbot system at Ambalsoft, integrating advanced features like "Talk with Agent" functionality and dynamic product adaptability via a unified SQLite database. Leveraged Large Language Models (LLM), Retrieval-Augmented Generation (RAG), and OpenAI API to ensure real-time, context-aware responses, while employing Express.js and Node.js for robust backend support. Designed with a highly intuitive UX/UI, the system offers exceptional readability and usability, catering to diverse software support needs with secure, scalable architecture.</p>
+    </div>
+</section>
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="card">
+        <ul>
+            <li><strong>Programming Languages:</strong> Python, Dart, SQL, C++, JavaScript</li>
+            <li><strong>Frameworks/Tools:</strong> Flutter, React.js, Node.js, Express.js, Supabase, Figma, Android Studio</li>
+            <li><strong>Technologies:</strong> AI, LLM, RAG, Faiss, OpenAI API, Pandas, PyQt, Chart.js, SQLite</li>
+            <li><strong>Design/Security:</strong> CSS, Bootstrap, Web Design, UX, Cybersecurity, Blockchain</li>
+        </ul>
+    </div>
+</section>
+<section id="certifications">
+    <h2>Certifications</h2>
+    <div class="card">
+        <ul>
+            <li>Foundations of Bootstrap, JS, React, CSS - Udemy | Aug 2025</li>
+            <li>Data Science Fundamentals - LinkedIn | Apr 2025</li>
+            <li>Governance Risk Management and Compliance - LinkedIn | Apr 2025</li>
+            <li>Node.js: Design Patterns - LinkedIn | Apr 2025</li>
+            <li>Prompt Engineering with ChatGPT - LinkedIn | Apr 2025</li>
+            <li>React Essentials - LinkedIn | Apr 2025</li>
+            <li>Complete Guide in HTML & CSS - Udemy | Mar 2025</li>
+            <li>Python Data Structures and Algorithms - LinkedIn | Mar 2025</li>
+            <li>Web3 Design and Security Essentials - LinkedIn | Mar 2025</li>
+        </ul>
+    </div>
+</section>
+<section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+        <p>Email: as5392@srmist.edu.in</p>
+        <p>LinkedIn: https://www.linkedin.com/in/adityan-suresh-781116256/</p>
+        <p>LeetCode: [Your LeetCode Profile]</p>
+        <p>GitHub: [Your GitHub Profile]</p>
+    </div>
+</section>
+<footer>
+    <p>© 2025 S Adityan. All rights reserved.</p>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section');
+        const nav = document.querySelector('nav');
+        const options = { root: null, threshold: 0.1 };
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Fade-in animation on scroll
-        const sections = document.querySelectorAll('.section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, { threshold: 0.1 });
+        }, options);
 
         sections.forEach(section => observer.observe(section));
 
-        // Dynamic header effect (optional glowing animation)
-        const header = document.querySelector('header h1');
-        let hue = 0;
-        setInterval(() => {
-            hue = (hue + 1) % 360;
-            header.style.textShadow = `0 0 10px hsl(${hue}, 100%, 50%)`;
-        }, 50);
-    </script>
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    });
+</script>
 </body>
 </html>
