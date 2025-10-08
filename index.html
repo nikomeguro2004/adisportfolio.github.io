@@ -3,221 +3,648 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of S Adityan, Full-Stack Developer specializing in AI, automation, SEO, and AWS">
     <title>S Adityan - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        :root {
+            --bg-color: #121212;
+            --text-color: #FFFFFF;
+            --accent-color: #40C4FF;
+            --card-bg: #1E1E1E;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
+            background: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #0F0F0F, #1A1A1A);
-            color: #D3D3D3;
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        header {
-            text-align: center;
-            padding: 80px 20px;
-            background: #0F0F0F;
-        }
-        header img {
-            border-radius: 50%;
-            width: 200px;
-            height: 200px;
-            border: 3px solid #00A3E0;
-            transition: transform 0.3s ease;
-        }
-        header img:hover {
-            transform: scale(1.05);
-        }
         nav {
-            background: #1A1A1A;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
+            position: sticky;
             top: 0;
-            width: 100%;
+            background: rgba(18, 18, 18, 0.95);
+            padding: 1rem;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-            transition: background 0.2s ease;
         }
-        nav.scrolled {
-            background: rgba(26, 26, 26, 0.95);
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
         }
         nav a {
-            color: #A0A0A0;
-            margin: 0 25px;
+            color: var(--text-color);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
-        nav a:hover {
-            color: #00A3E0;
+        nav a:hover { color: var(--accent-color); }
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-color), #1E1E1E, #2A2A2A);
+            animation: gradientShift 12s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #B0BEC5;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
         section {
-            padding: 80px 40px;
-            max-width: 1300px;
-            margin: 0 auto;
-            opacity: 0;
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
             transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0.8;
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
-        section.active {
-            opacity: 1;
+        section.visible {
             transform: translateY(0);
+            opacity: 1;
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .card {
-            background: #222222;
-            padding: 20px;
-            margin: 10px 0;
+            background: var(--card-bg);
+            padding: 1.2rem;
             border-radius: 8px;
-            border-left: 4px solid #00A3E0;
+            margin-bottom: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 163, 224, 0.2);
+            box-shadow: 0 0 12px rgba(64, 196, 255, 0.5);
         }
-        .skills ul, .certifications ul {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px;
+        .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-color);
         }
-        .skills li, .certifications li {
-            margin: 5px 0;
+        .skills-section {
+            margin-bottom: 1.5rem;
         }
-        footer {
+        .skills-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 0.8rem;
+            background: var(--card-bg);
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .skills-section h3:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .skills-container {
+            display: none;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+        .skills-container.active {
+            display: flex;
+        }
+        .skill-hex {
+            width: 90px;
+            height: 104px;
+            background: var(--card-bg);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 15px;
-            background: #0F0F0F;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.5s ease, background 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInHex 0.5s ease forwards;
+            animation-delay: calc(var(--index) * 0.08s);
+        }
+        .skill-hex:hover {
+            transform: scale(1.1) rotate(360deg);
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px rgba(64, 196, 255, 0.7);
+        }
+        @keyframes fadeInHex {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        .cert-card {
+            perspective: 1000px;
+            height: 120px;
+            animation: fadeInCert 0.5s ease forwards;
+            animation-delay: calc(var(--index) * 0.1s);
+        }
+        .cert-card-inner {
+            position: relative;
             width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(64, 196, 255, 0.3);
+        }
+        .cert-card:hover .cert-card-inner {
+            transform: rotateY(180deg);
+            box-shadow: 0 0 12px rgba(64, 196, 255, 0.7);
+        }
+        .cert-front, .cert-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .cert-front {
+            background: var(--card-bg);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+        .cert-back {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            transform: rotateY(180deg);
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        @keyframes fadeInCert {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .contact-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 12px rgba(64, 196, 255, 0.5);
+        }
+        .contact-card a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .contact-card a:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .contact-card i {
+            font-size: 1.2rem;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+            display: none;
+        }
+        .back-to-top:hover {
+            background: #0288D1;
+        }
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 0.5rem;
+            }
+            .hero {
+                padding: 2.5rem 1rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            section {
+                margin: 1.5rem auto;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .card, .contact-card {
+                padding: 1rem;
+            }
+            .card h3 {
+                font-size: 1.1rem;
+            }
+            .skill-hex {
+                width: 70px;
+                height: 81px;
+                font-size: 0.75rem;
+            }
+            .skills-container {
+                gap: 0.5rem;
+            }
+            .cert-card {
+                height: 100px;
+            }
+            .cert-front {
+                font-size: 0.8rem;
+            }
+            .cert-back {
+                font-size: 0.7rem;
+            }
+            .contact-card a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+            .back-to-top {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .skill-hex {
+                width: 60px;
+                height: 69px;
+                font-size: 0.7rem;
+            }
+            .cert-card {
+                height: 90px;
+            }
+            .cert-front {
+                font-size: 0.7rem;
+            }
+            .cert-back {
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
 <body>
-<header>
-    <img src="profile.jpg" alt="S Adityan">
-    <h1>S Adityan</h1>
-    <p>as5392@srmist.edu.in | 9360707432 | Chennai, Tamil Nadu, India, 600002</p>
-    <p>Final Year B.Tech in Computer Science and Engineering - Cyber Security, SRM IST-Ramapuram | 2026</p>
-</header>
-<nav>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#contact">Contact</a>
-</nav>
-<section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-        <p>As a dynamic full-stack developer with a robust foundation in Python, Flutter, Supabase, and React.js, I specialize in architecting sophisticated, high-performance applications that seamlessly integrate cutting-edge UI/UX with resilient backend systems. Currently in my final year at SRM IST-Ramapuram pursuing a B.Tech in Computer Science and Engineering with a focus on Cyber Security, I have cultivated advanced technical proficiency through hands-on projects, including a desktop analytics platform, a real-time restaurant management system, and a security-focused Chrome extension. My expertise spans secure coding practices, real-time data synchronization, and user-centric design, driving innovative solutions that enhance digital ecosystems. Committed to continuous professional growth, I leverage emerging technologies to deliver scalable, impactful software, positioning myself as a valuable asset in the tech industry.</p>
-    </div>
-</section>
-<section id="experience">
-    <h2>Experience</h2>
-    <div class="card">
-        <h3>Ambalsoft - Artificial Intelligence Intern</h3>
-        <p>Sep 2025 - Present | Developer, Full-time | Chennai, Tamil Nadu, India</p>
-        <p>Serving as an Artificial Intelligence Intern at Ambalsoft, I spearhead the development and deployment of fine-tuned AI models integrated with robust backends, enhancing existing products with innovative functionalities. Collaborating with cross-functional teams, I optimize model performance using advanced techniques like Retrieval-Augmented Generation (RAG) and Large Language Models (LLM), ensuring seamless integration and rigorous compliance with industry standards. My responsibilities include leveraging tools such as Faiss, OpenAI API, and Express.js to architect scalable support chatbot systems, delivering exceptional user experiences with real-time adaptability and secure data management, thereby driving product innovation and operational efficiency.</p>
-    </div>
-    <div class="card">
-        <h3>Freelance Software Engineer</h3>
-        <p>Jun 2025 - Present | Freelance</p>
-        <p>As a Freelance Software Engineer, I design and implement complex, client-tailored software solutions utilizing Flutter, PyQt, and React.js, emphasizing optimized performance and intuitive UI/UX. I manage end-to-end project lifecycles, from conceptual design to deployment, integrating advanced frameworks like Supabase and Figma to deliver responsive, cross-platform applications. My work showcases proficiency in team leadership and management, ensuring timely delivery of high-quality, scalable solutions that meet diverse business needs across industries.</p>
-    </div>
-</section>
-<section id="projects">
-    <h2>Projects</h2>
-    <div class="card">
-        <h3>Water Plant Management System <a href="Github Link" target="_blank">GitHub</a></h3>
-        <p>Jun 2025 - Aug 2025 | Freelance | Python, SQLite, PyQt5, Pandas, Chart.js, Git, ReportLab</p>
-        <p>Engineered a sophisticated desktop application leveraging Python and PyQt5 to construct a highly responsive GUI, exemplifying advanced event-driven programming and ergonomic design principles. Implemented SQLite for streamlined database management, optimizing query performance, while harnessing Pandas and NumPy for intricate data analysis and visualization. Integrated Chart.js for dynamic, interactive data representations and ReportLab for automated, precision-engineered PDF invoice generation, enhancing operational automation. Elevated the interface with QtAwesome icons and CSS-inspired styling, delivering a professional, user-centric experience that sets a benchmark in industrial software solutions.</p>
-    </div>
-    <div class="card">
-        <h3>Cuisync <a href="Github Link" target="_blank">GitHub</a></h3>
-        <p>Aug 2025 - Present | Freelance | Flutter, Dart, Supabase, Figma, Android Studio</p>
-        <p>Led a 4-member team to develop Cuisync, a cutting-edge cross-platform restaurant management platform, utilizing Flutter with Bloc architecture for seamless 60fps UI performance. Designed and deployed Waiter and Chef Android applications alongside an Admin Web Dashboard, incorporating role-based Supabase authentication, real-time synchronization, and fortified data security protocols. Engineered QR-coded PDF invoices and interactive fl_chart analytics, optimizing system efficiency for live restaurant operations, showcasing advanced mobile development and collaborative project execution skills.</p>
-    </div>
-    <div class="card">
-        <h3>Site Analyzer using AI <a href="Github Link" target="_blank">GitHub</a></h3>
-        <p>Feb 2025 - Apr 2025 | SRM IST-Ramapuram | JavaScript, Python, React.js, CSS, PHP</p>
-        <p>Developed an innovative Chrome Extension for real-time website security analysis, empowering users to mitigate risks from malicious sites through a multi-layered evaluation framework. Utilized JavaScript and React.js to assess URLs against phishing detection, SSL validation, typosquatting, and shortened URL expansion, cross-referencing with threat intelligence databases. Enhanced functionality with WHOIS lookup, blacklist filtering, and a user reporting system, delivering dynamic risk assessments via a sleek, animated UI, built with Chrome Extension APIs and security databases, reinforcing my expertise in cybersecurity and web development.</p>
-    </div>
-    <div class="card">
-        <h3>Support Chatbot for Specific Softwares <a href="Github Link" target="_blank">GitHub</a></h3>
-        <p>Sep 2025 - Present | Ambalsoft | AI, Express.js, Faiss, JavaScript, LLM, Node.js, OpenAI API, React.js, SQLite</p>
-        <p>Architected a state-of-the-art AI-driven support chatbot system at Ambalsoft, integrating advanced features like "Talk with Agent" functionality and dynamic product adaptability via a unified SQLite database. Leveraged Large Language Models (LLM), Retrieval-Augmented Generation (RAG), and OpenAI API to ensure real-time, context-aware responses, while employing Express.js and Node.js for robust backend support. Designed with a highly intuitive UX/UI, the system offers exceptional readability and usability, catering to diverse software support needs with secure, scalable architecture.</p>
-    </div>
-</section>
-<section id="skills">
-    <h2>Skills</h2>
-    <div class="card">
+    <nav>
         <ul>
-            <li><strong>Programming Languages:</strong> Python, Dart, SQL, C++, JavaScript</li>
-            <li><strong>Frameworks/Tools:</strong> Flutter, React.js, Node.js, Express.js, Supabase, Figma, Android Studio</li>
-            <li><strong>Technologies:</strong> AI, LLM, RAG, Faiss, OpenAI API, Pandas, PyQt, Chart.js, SQLite</li>
-            <li><strong>Design/Security:</strong> CSS, Bootstrap, Web Design, UX, Cybersecurity, Blockchain</li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
+    </nav>
+    <div class="hero">
+        <div id="particles"></div>
+        <h1>S Adityan</h1>
+        <p>Full-Stack Developer | AI & Automation Specialist | SEO & AWS Expert</p>
     </div>
-</section>
-<section id="certifications">
-    <h2>Certifications</h2>
-    <div class="card">
-        <ul>
-            <li>Foundations of Bootstrap, JS, React, CSS - Udemy | Aug 2025</li>
-            <li>Data Science Fundamentals - LinkedIn | Apr 2025</li>
-            <li>Governance Risk Management and Compliance - LinkedIn | Apr 2025</li>
-            <li>Node.js: Design Patterns - LinkedIn | Apr 2025</li>
-            <li>Prompt Engineering with ChatGPT - LinkedIn | Apr 2025</li>
-            <li>React Essentials - LinkedIn | Apr 2025</li>
-            <li>Complete Guide in HTML & CSS - Udemy | Mar 2025</li>
-            <li>Python Data Structures and Algorithms - LinkedIn | Mar 2025</li>
-            <li>Web3 Design and Security Essentials - LinkedIn | Mar 2025</li>
-        </ul>
-    </div>
-</section>
-<section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-        <p>Email: as5392@srmist.edu.in</p>
-        <p>LinkedIn: https://www.linkedin.com/in/adityan-suresh-781116256/</p>
-        <p>LeetCode: [Your LeetCode Profile]</p>
-        <p>GitHub: [Your GitHub Profile]</p>
-    </div>
-</section>
-<footer>
-    <p>© 2025 S Adityan. All rights reserved.</p>
-</footer>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll('section');
-        const nav = document.querySelector('nav');
-        const options = { root: null, threshold: 0.1 };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, options);
-
-        sections.forEach(section => observer.observe(section));
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
+    <section id="about" data-aos="fade-up">
+        <h2>About Me</h2>
+        <p>I'm a final-year B.Tech student at SRM IST-Ramapuram, building high-performance applications with Python, Flutter, Next.js, and AWS. My expertise in AI, automation, and SEO drives innovative solutions, from ML-driven chatbots to SEO-optimized web platforms.</p>
+    </section>
+    <section id="experience" data-aos="fade-up">
+        <h2>Experience</h2>
+        <div class="card" data-tilt data-tilt-max="8">
+            <h3>Ambalsoft - AI Intern</h3>
+            <p>Sep 2025 - Present | Chennai, India</p>
+            <ul>
+                <li>Built AI models from local sources using Transformers, enabling multiple tasks in a single application.</li>
+                <li>Developed client software with OpenRouter API, Faiss, and RAG for data querying.</li>
+                <li>Automated workflows and testing with Playwright to streamline development and deployment.</li>
+            </ul>
+        </div>
+        <div class="card" data-tilt data-tilt-max="8">
+            <h3>Freelance Software Engineer</h3>
+            <p>Jun 2025 - Present</p>
+            <ul>
+                <li>Designed full-stack applications with React, Node.js, Next.js, Flutter, and AWS S3/Lambda.</li>
+                <li>Implemented automation with Playwright for testing and optimized websites with SEO techniques.</li>
+                <li>Delivered responsive, high-performance solutions for diverse client needs.</li>
+            </ul>
+        </div>
+    </section>
+    <section id="projects" data-aos="fade-up">
+        <h2>Projects</h2>
+        <div class="card" data-tilt data-tilt-max="8">
+            <h3>Water Plant Management System</h3>
+            <p>Jun 2025 - Aug 2025 | Freelance | Python, SQLite, PyQt5, Pandas, Chart.js, Git, ReportLab</p>
+            <ul>
+                <li>Built a desktop app with Python and PyQt5 for a responsive GUI.</li>
+                <li>Used SQLite for efficient database management and Pandas for data analysis.</li>
+                <li>Integrated Chart.js for dynamic visualizations and ReportLab for automated PDF invoices.</li>
+                <li>Enhanced UI with QtAwesome icons and CSS-inspired styling.</li>
+            </ul>
+        </div>
+        <div class="card" data-tilt data-tilt-max="8">
+            <h3>Cuisync</h3>
+            <p>Aug 2025 - Present | Freelance | Flutter, Dart, Supabase, Figma, Android Studio</p>
+            <ul>
+                <li>Led a team to develop a cross-platform restaurant management app using Flutter and Bloc.</li>
+                <li>Created Waiter/Chef Android apps and an Admin Web Dashboard with Supabase authentication.</li>
+                <li>Enabled real-time sync, QR-coded PDF invoices, and fl_chart analytics.</li>
+                <li>Designed UI in Figma for seamless 60fps performance.</li>
+            </ul>
+        </div>
+        <div class="card" data-tilt data-tilt-max="8">
+            <h3>Site Analyzer using AI</h3>
+            <p>Feb 2025 - Apr 2025 | Freelance | JavaScript, Python, React.js, CSS</p>
+            <ul>
+                <li>Developed a Chrome Extension for real-time website analysis.</li>
+                <li>Used JavaScript and React.js for URL assessments and user reporting.</li>
+                <li>Hosted on AWS S3 for scalability with a sleek, animated UI.</li>
+            </ul>
+        </div>
+        <div class="card" data-tilt data-tilt-max="8">
+            <h3>Support Chatbot for Specific Softwares</h3>
+            <p>Sep 2025 - Present | Ambalsoft | AI, Express.js, Faiss, JavaScript, LLM, Node.js, OpenAI API, React.js, SQLite</p>
+            <ul>
+                <li>Built an AI-driven chatbot with LLM, RAG, and OpenAI API for context-aware responses.</li>
+                <li>Integrated "Talk with Agent" feature and SQLite for dynamic product adaptability.</li>
+                <li>Used Express.js and Node.js for robust backend, React.js for intuitive UI.</li>
+                <li>Automated testing with Playwright for scalability and reliability.</li>
+            </ul>
+        </div>
+    </section>
+    <section id="skills" data-aos="fade-up">
+        <h2>Skills</h2>
+        <div class="skills-section">
+            <h3 onclick="toggleSkills(this)">Frontend</h3>
+            <div class="skills-container">
+                <div class="skill-hex" style="--index: 1;">React.js</div>
+                <div class="skill-hex" style="--index: 2;">Next.js</div>
+                <div class="skill-hex" style="--index: 3;">Flutter</div>
+                <div class="skill-hex" style="--index: 4;">JavaScript</div>
+                <div class="skill-hex" style="--index: 5;">CSS</div>
+                <div class="skill-hex" style="--index: 6;">Web Design</div>
+                <div class="skill-hex" style="--index: 7;">UX/UI</div>
+            </div>
+        </div>
+        <div class="skills-section">
+            <h3 onclick="toggleSkills(this)">Backend</h3>
+            <div class="skills-container">
+                <div class="skill-hex" style="--index: 1;">Node.js</div>
+                <div class="skill-hex" style="--index: 2;">Express.js</div>
+                <div class="skill-hex" style="--index: 3;">Supabase</div>
+                <div class="skill-hex" style="--index: 4;">SQLite</div>
+                <div class="skill-hex" style="--index: 5;">MongoDB</div>
+                <div class="skill-hex" style="--index: 6;">SQL Server</div>
+            </div>
+        </div>
+        <div class="skills-section">
+            <h3 onclick="toggleSkills(this)">AI/ML</h3>
+            <div class="skills-container">
+                <div class="skill-hex" style="--index: 1;">Python</div>
+                <div class="skill-hex" style="--index: 2;">Pandas</div>
+                <div class="skill-hex" style="--index: 3;">TensorFlow</div>
+                <div class="skill-hex" style="--index: 4;">PyTorch</div>
+                <div class="skill-hex" style="--index: 5;">AI & LLMs</div>
+                <div class="skill-hex" style="--index: 6;">NLP</div>
+                <div class="skill-hex" style="--index: 7;">Faiss</div>
+            </div>
+        </div>
+        <div class="skills-section">
+            <h3 onclick="toggleSkills(this)">Cloud</h3>
+            <div class="skills-container">
+                <div class="skill-hex" style="--index: 1;">AWS EC2</div>
+                <div class="skill-hex" style="--index: 2;">AWS S3</div>
+                <div class="skill-hex" style="--index: 3;">AWS Lambda</div>
+                <div class="skill-hex" style="--index: 4;">Kubernetes</div>
+                <div class="skill-hex" style="--index: 5;">Docker</div>
+                <div class="skill-hex" style="--index: 6;">Apache Spark</div>
+            </div>
+        </div>
+        <div class="skills-section">
+            <h3 onclick="toggleSkills(this)">Automation/SEO</h3>
+            <div class="skills-container">
+                <div class="skill-hex" style="--index: 1;">Playwright</div>
+                <div class="skill-hex" style="--index: 2;">SEO</div>
+                <div class="skill-hex" style="--index: 3;">Google Analytics</div>
+                <div class="skill-hex" style="--index: 4;">Notion AI</div>
+            </div>
+        </div>
+    </section>
+    <section id="certifications" data-aos="fade-up">
+        <h2>Certifications</h2>
+        <div class="certifications-container">
+            <div class="cert-card" style="--index: 1;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Foundations of Bootstrap, JS, React, CSS</div>
+                    <div class="cert-back">I mastered front-end development with Bootstrap, JavaScript, React, and CSS for responsive UIs.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 2;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Data Science Fundamentals</div>
+                    <div class="cert-back">I learned core data science techniques for effective data analysis.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 3;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Node.js:</div>
+                    <div class="cert-back">I understood backend modules for Node.js applications, along with different frameworks that come along.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 4;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Prompt Engineering</div>
+                    <div class="cert-back">I figured out how to optimize AI prompts for fine-tuning LLM models.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 5;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">React Essentials</div>
+                    <div class="cert-back">I mastered React core concepts for dynamic user interfaces.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 7;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Python Data Structures and Algorithms</div>
+                    <div class="cert-back">I understood efficient algorithms and data structures in Python.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 8;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Web3 Design and Security Essentials</div>
+                    <div class="cert-back">I discovered Web3 design principles and security practices.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 9;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">AI Workflow Enterprise Model</div>
+                    <div class="cert-back">I learned to streamline enterprise AI workflows with advanced techniques.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 10;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">UI/UX with Figma</div>
+                    <div class="cert-back">I mastered user-centric interface design using Figma.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 11;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">AWS Essentials</div>
+                    <div class="cert-back">I figured out AWS cloud services for scalable deployments.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 12;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Dart Mastery</div>
+                    <div class="cert-back">I learned to develop cross-platform apps with Dart and Flutter.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 13;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Arduino Bootcamp</div>
+                    <div class="cert-back">I discovered IoT development with Arduino programming.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 14;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">Playwright Bootcamp</div>
+                    <div class="cert-back">I mastered automated testing with Playwright for robust applications.</div>
+                </div>
+            </div>
+            <div class="cert-card" style="--index: 15;" data-tilt data-tilt-max="8">
+                <div class="cert-card-inner">
+                    <div class="cert-front">NLP in Python</div>
+                    <div class="cert-back">I learned NLP techniques for text analysis in Python.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact</h2>
+        <div class="contact-card">
+            <a href="mailto:adihere2000@gmail.com"><i class="fas fa-envelope"></i> adihere2000@gmail.com</a>
+            <a href="https://www.linkedin.com/in/adityan-suresh-781116256/"><i class="fab fa-linkedin"></i> adityan</a>
+            <a href="https://leetcode.com/u/NikoMeguro/"><i class="fas fa-code"></i> LeetCode</a>
+            <a href="https://github.com/nikomeguro2004"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </section>
+    <a href="#" class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Particles.js for hero section
+        particlesJS('particles', {
+            particles: {
+                number: { value: 40, density: { enable: true, value_area: 800 } },
+                color: { value: '#40C4FF' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.4, random: true },
+                size: { value: 3, random: true },
+                move: { enable: true, speed: 1, direction: 'none', random: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                modes: { repulse: { distance: 80 }, push: { particles_nb: 3 } }
+            }
         });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // AOS initialization
+        AOS.init({ duration: 800, once: true });
+        // Smooth scrolling
+        document.querySelectorAll('nav a, .back-to-top').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
-    });
-</script>
+        // Tilt.js for cards
+        $('.card, .cert-card').tilt({
+            maxTilt: 8,
+            scale: 1.03,
+            speed: 400
+        });
+        // Accordion for skills
+        function toggleSkills(element) {
+            const container = element.nextElementSibling;
+            container.classList.toggle('active');
+        }
+        // Back to top button visibility
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('back-to-top');
+            backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+        // Parallax effect for sections
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
