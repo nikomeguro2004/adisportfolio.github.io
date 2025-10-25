@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Portfolio of S Adityan, Full-Stack Developer specializing in AI, automation, SEO, and AWS">
     <title>S Adityan - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -23,6 +23,7 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
         nav {
             position: sticky;
@@ -44,21 +45,58 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             font-size: 1rem;
+            padding: 0.5rem;
             transition: color 0.3s ease;
+            touch-action: manipulation;
         }
-        nav a:hover { color: var(--accent-color); }
+        .desktop nav a:hover { color: var(--accent-color); }
+        .mobile nav a:active { color: var(--accent-color); }
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            touch-action: manipulation;
+        }
+        .mobile .hamburger {
+            display: block;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        .mobile nav ul {
+            display: none;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: var(--card-bg);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile nav ul.active {
+            display: flex;
+            transform: translateX(0);
+        }
+        .mobile nav a {
+            font-size: 1.1rem;
+            padding: 0.8rem;
+            width: 100%;
+            text-align: center;
+        }
         .hero {
             text-align: center;
             padding: 4rem 1rem;
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, var(--bg-color), #1E1E1E, #2A2A2A);
-            animation: gradientShift 12s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
@@ -104,12 +142,13 @@
             padding: 1.2rem;
             border-radius: 8px;
             margin-bottom: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
-        .card:hover {
+        .desktop .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 12px rgba(64, 196, 255, 0.5);
         }
+        .mobile .card:active { transform: translateY(-3px); }
         .card h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.3rem;
@@ -127,8 +166,13 @@
             background: var(--card-bg);
             border-radius: 5px;
             transition: background 0.3s ease;
+            touch-action: manipulation;
         }
-        .skills-section h3:hover {
+        .desktop .skills-section h3:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .mobile .skills-section h3:active {
             background: var(--accent-color);
             color: var(--bg-color);
         }
@@ -153,15 +197,20 @@
             text-align: center;
             font-size: 0.85rem;
             font-weight: 500;
-            transition: transform 0.5s ease, background 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
             animation: fadeInHex 0.5s ease forwards;
             animation-delay: calc(var(--index) * 0.08s);
         }
-        .skill-hex:hover {
+        .desktop .skill-hex:hover {
             transform: scale(1.1) rotate(360deg);
             background: var(--accent-color);
             color: var(--bg-color);
             box-shadow: 0 0 10px rgba(64, 196, 255, 0.7);
+        }
+        .mobile .skill-hex:active {
+            transform: scale(1.05);
+            background: var(--accent-color);
+            color: var(--bg-color);
         }
         @keyframes fadeInHex {
             0% { opacity: 0; transform: scale(0.8); }
@@ -187,11 +236,13 @@
             transform-style: preserve-3d;
             background: var(--card-bg);
             border-radius: 8px;
-            box-shadow: 0 0 8px rgba(64, 196, 255, 0.3);
         }
-        .cert-card:hover .cert-card-inner {
+        .desktop .cert-card:hover .cert-card-inner {
             transform: rotateY(180deg);
             box-shadow: 0 0 12px rgba(64, 196, 255, 0.7);
+        }
+        .mobile .cert-card:active .cert-card-inner {
+            transform: rotateY(180deg);
         }
         .cert-front, .cert-back {
             position: absolute;
@@ -230,11 +281,14 @@
             text-align: center;
             max-width: 500px;
             margin: 0 auto;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
-        .contact-card:hover {
+        .desktop .contact-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 12px rgba(64, 196, 255, 0.5);
+        }
+        .mobile .contact-card:active {
+            transform: translateY(-3px);
         }
         .contact-card a {
             display: inline-flex;
@@ -249,8 +303,13 @@
             border: 1px solid var(--accent-color);
             border-radius: 5px;
             transition: background 0.3s ease, color 0.3s ease;
+            touch-action: manipulation;
         }
-        .contact-card a:hover {
+        .desktop .contact-card a:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .mobile .contact-card a:active {
             background: var(--accent-color);
             color: var(--bg-color);
         }
@@ -270,28 +329,29 @@
             font-size: 0.9rem;
             transition: background 0.3s ease;
             display: none;
+            touch-action: manipulation;
         }
-        .back-to-top:hover {
+        .desktop .back-to-top:hover {
+            background: #0288D1;
+        }
+        .mobile .back-to-top:active {
             background: #0288D1;
         }
         @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-                gap: 0.8rem;
-                padding: 0.5rem;
-            }
             .hero {
-                padding: 2.5rem 1rem;
+                padding: 2.5rem 0.8rem;
             }
             .hero h1 {
                 font-size: 1.8rem;
             }
             .hero p {
                 font-size: 1rem;
-                padding: 0 1rem;
+                max-width: 95%;
             }
             section {
+                max-width: 100%;
                 margin: 1.5rem auto;
+                padding: 0 0.5rem;
             }
             h2 {
                 font-size: 1.5rem;
@@ -310,6 +370,10 @@
             .skills-container {
                 gap: 0.5rem;
             }
+            .certifications-container {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 0.8rem;
+            }
             .cert-card {
                 height: 100px;
             }
@@ -319,18 +383,23 @@
             .cert-back {
                 font-size: 0.7rem;
             }
+            .contact-card {
+                max-width: 90%;
+            }
             .contact-card a {
                 font-size: 0.9rem;
                 padding: 0.4rem 0.8rem;
             }
             .back-to-top {
                 font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
+                padding: 0.5rem;
+                bottom: 15px;
+                right: 15px;
             }
         }
         @media (max-width: 400px) {
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .hero p {
                 font-size: 0.9rem;
@@ -344,7 +413,7 @@
                 height: 90px;
             }
             .cert-front {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
             .cert-back {
                 font-size: 0.65rem;
@@ -354,6 +423,7 @@
 </head>
 <body>
     <nav>
+        <button class="hamburger"><i class="fas fa-bars"></i></button>
         <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
@@ -374,7 +444,7 @@
     </section>
     <section id="experience" data-aos="fade-up">
         <h2>Experience</h2>
-        <div class="card" data-tilt data-tilt-max="8">
+        <div class="card">
             <h3>Ambalsoft - AI Intern</h3>
             <p>Sep 2025 - Present | Chennai, India</p>
             <ul>
@@ -383,7 +453,7 @@
                 <li>Automated workflows and testing with Playwright to streamline development and deployment.</li>
             </ul>
         </div>
-        <div class="card" data-tilt data-tilt-max="8">
+        <div class="card">
             <h3>Freelance Software Engineer</h3>
             <p>Jun 2025 - Present</p>
             <ul>
@@ -395,7 +465,7 @@
     </section>
     <section id="projects" data-aos="fade-up">
         <h2>Projects</h2>
-        <div class="card" data-tilt data-tilt-max="8">
+        <div class="card">
             <h3>Water Plant Management System</h3>
             <p>Jun 2025 - Aug 2025 | Freelance | Python, SQLite, PyQt5, Pandas, Chart.js, Git, ReportLab</p>
             <ul>
@@ -405,7 +475,7 @@
                 <li>Enhanced UI with QtAwesome icons and CSS-inspired styling.</li>
             </ul>
         </div>
-        <div class="card" data-tilt data-tilt-max="8">
+        <div class="card">
             <h3>Cuisync</h3>
             <p>Aug 2025 - Present | Freelance | Flutter, Dart, Supabase, Figma, Android Studio</p>
             <ul>
@@ -415,7 +485,7 @@
                 <li>Designed UI in Figma for seamless 60fps performance.</li>
             </ul>
         </div>
-        <div class="card" data-tilt data-tilt-max="8">
+        <div class="card">
             <h3>Site Analyzer using AI</h3>
             <p>Feb 2025 - Apr 2025 | Freelance | JavaScript, Python, React.js, CSS</p>
             <ul>
@@ -424,7 +494,7 @@
                 <li>Hosted on AWS S3 for scalability with a sleek, animated UI.</li>
             </ul>
         </div>
-        <div class="card" data-tilt data-tilt-max="8">
+        <div class="card">
             <h3>Support Chatbot for Specific Softwares</h3>
             <p>Sep 2025 - Present | Ambalsoft | AI, Express.js, Faiss, JavaScript, LLM, Node.js, OpenAI API, React.js, SQLite</p>
             <ul>
@@ -496,85 +566,85 @@
     <section id="certifications" data-aos="fade-up">
         <h2>Certifications</h2>
         <div class="certifications-container">
-            <div class="cert-card" style="--index: 1;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 1;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Foundations of Bootstrap, JS, React, CSS</div>
                     <div class="cert-back">I mastered front-end development with Bootstrap, JavaScript, React, and CSS for responsive UIs.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 2;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 2;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Data Science Fundamentals</div>
                     <div class="cert-back">I learned core data science techniques for effective data analysis.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 3;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 3;">
                 <div class="cert-card-inner">
-                    <div class="cert-front">Node.js:</div>
+                    <div class="cert-front">Node.js</div>
                     <div class="cert-back">I understood backend modules for Node.js applications, along with different frameworks that come along.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 4;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 4;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Prompt Engineering</div>
                     <div class="cert-back">I figured out how to optimize AI prompts for fine-tuning LLM models.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 5;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 5;">
                 <div class="cert-card-inner">
                     <div class="cert-front">React Essentials</div>
                     <div class="cert-back">I mastered React core concepts for dynamic user interfaces.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 7;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 7;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Python Data Structures and Algorithms</div>
                     <div class="cert-back">I understood efficient algorithms and data structures in Python.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 8;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 8;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Web3 Design and Security Essentials</div>
                     <div class="cert-back">I discovered Web3 design principles and security practices.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 9;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 9;">
                 <div class="cert-card-inner">
                     <div class="cert-front">AI Workflow Enterprise Model</div>
                     <div class="cert-back">I learned to streamline enterprise AI workflows with advanced techniques.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 10;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 10;">
                 <div class="cert-card-inner">
                     <div class="cert-front">UI/UX with Figma</div>
                     <div class="cert-back">I mastered user-centric interface design using Figma.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 11;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 11;">
                 <div class="cert-card-inner">
                     <div class="cert-front">AWS Essentials</div>
                     <div class="cert-back">I figured out AWS cloud services for scalable deployments.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 12;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 12;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Dart Mastery</div>
                     <div class="cert-back">I learned to develop cross-platform apps with Dart and Flutter.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 13;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 13;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Arduino Bootcamp</div>
                     <div class="cert-back">I discovered IoT development with Arduino programming.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 14;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 14;">
                 <div class="cert-card-inner">
                     <div class="cert-front">Playwright Bootcamp</div>
                     <div class="cert-back">I mastered automated testing with Playwright for robust applications.</div>
                 </div>
             </div>
-            <div class="cert-card" style="--index: 15;" data-tilt data-tilt-max="8">
+            <div class="cert-card" style="--index: 15;">
                 <div class="cert-card-inner">
                     <div class="cert-front">NLP in Python</div>
                     <div class="cert-back">I learned NLP techniques for text analysis in Python.</div>
@@ -595,24 +665,78 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Particles.js for hero section
-        particlesJS('particles', {
-            particles: {
-                number: { value: 40, density: { enable: true, value_area: 800 } },
-                color: { value: '#40C4FF' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.4, random: true },
-                size: { value: 3, random: true },
-                move: { enable: true, speed: 1, direction: 'none', random: false }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
-                modes: { repulse: { distance: 80 }, push: { particles_nb: 3 } }
-            }
+        // Device detection
+        function getDeviceType() {
+            const ua = navigator.userAgent;
+            const isMobile = /Mobi|Android|iPhone|iPad|iPod|Touch/i.test(ua) || window.innerWidth <= 600;
+            return isMobile ? 'mobile' : 'desktop';
+        }
+
+        // Apply device-specific class to body
+        const deviceType = getDeviceType();
+        document.body.classList.add(deviceType);
+
+        // Switch-like logic for device-specific configurations
+        switch (deviceType) {
+            case 'mobile':
+                particlesJS('particles', {
+                    particles: {
+                        number: { value: 20, density: { enable: true, value_area: 800 } },
+                        color: { value: '#40C4FF' },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.3, random: true },
+                        size: { value: 2, random: true },
+                        move: { enable: true, speed: 0.5, direction: 'none', random: false }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: { onhover: { enable: false }, onclick: { enable: true, mode: 'push' } },
+                        modes: { push: { particles_nb: 2 } }
+                    }
+                });
+                AOS.init({ duration: 600, once: true });
+                break;
+            case 'desktop':
+                particlesJS('particles', {
+                    particles: {
+                        number: { value: 40, density: { enable: true, value_area: 800 } },
+                        color: { value: '#40C4FF' },
+                        shape: { type: 'circle' },
+                        opacity: { value: 0.4, random: true },
+                        size: { value: 3, random: true },
+                        move: { enable: true, speed: 1, direction: 'none', random: false }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                        modes: { repulse: { distance: 80 }, push: { particles_nb: 3 } }
+                    }
+                });
+                AOS.init({ duration: 800, once: true });
+                $('.card, .cert-card').tilt({
+                    maxTilt: 8,
+                    scale: 1.03,
+                    speed: 400
+                });
+                break;
+        }
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+            hamburger.innerHTML = navUl.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-        // AOS initialization
-        AOS.init({ duration: 800, once: true });
+
+        // Close menu on link click
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', () => {
+                navUl.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
         // Smooth scrolling
         document.querySelectorAll('nav a, .back-to-top').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -620,22 +744,19 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
-        // Tilt.js for cards
-        $('.card, .cert-card').tilt({
-            maxTilt: 8,
-            scale: 1.03,
-            speed: 400
-        });
+
         // Accordion for skills
         function toggleSkills(element) {
             const container = element.nextElementSibling;
             container.classList.toggle('active');
         }
+
         // Back to top button visibility
         window.addEventListener('scroll', () => {
             const backToTop = document.getElementById('back-to-top');
             backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
         });
+
         // Parallax effect for sections
         window.addEventListener('scroll', () => {
             document.querySelectorAll('section').forEach(section => {
@@ -644,6 +765,16 @@
                     section.classList.add('visible');
                 }
             });
+        });
+
+        // Update device class on resize
+        window.addEventListener('resize', () => {
+            const newDeviceType = getDeviceType();
+            if (newDeviceType !== deviceType) {
+                document.body.classList.remove('mobile', 'desktop');
+                document.body.classList.add(newDeviceType);
+                location.reload();
+            }
         });
     </script>
 </body>
